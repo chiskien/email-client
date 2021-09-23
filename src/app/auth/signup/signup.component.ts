@@ -1,5 +1,5 @@
-import { FormGroup, FormControl} from "@angular/forms";
-import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-signup',
@@ -7,12 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  authForm = new FormGroup( {
-    username: new FormControl(''),
-    password: new FormControl(''),
-    passwordConfirmation: new FormControl(''),
+  authForm = new FormGroup({
+    username: new FormControl('CK', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20),
+      Validators.pattern(/^[a-z0-9]+$/)
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20),
+    ]),
+    passwordConfirmation: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(20),
+    ]),
   })
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
