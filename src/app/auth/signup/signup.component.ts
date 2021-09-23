@@ -1,5 +1,6 @@
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Component, OnInit} from '@angular/core';
+import {Match} from "../validators/match";
 
 @Component({
   selector: 'app-signup',
@@ -24,9 +25,9 @@ export class SignupComponent implements OnInit {
       Validators.minLength(4),
       Validators.maxLength(20),
     ]),
-  })
+  }, {validators: [this.match.validate]});
 
-  constructor() {
+  constructor(private match: Match) {
   }
 
   ngOnInit(): void {
